@@ -25,4 +25,18 @@ const router = Router();
 
 // Your routes here
 
+router.route('/')
+  .post(upload.single('image'), uploadImage)
+  .get(listImages);
+
+router.route('/:id')
+  .get(validateObjectId, getImage)
+  .delete(validateObjectId, deleteImage);
+
+router.route('/:id/download')
+  .get(validateObjectId, downloadImage);
+
+router.route('/:id/thumbnail')
+  .get(validateObjectId, downloadThumbnail);
+
 export default router;
